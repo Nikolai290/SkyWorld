@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Laito\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Laito\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_SkyWorld.965147186.00" t="ExcludeRecursive" />
+    <e p="D:\UnityProjects\Local\SkyWorld" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Materials" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="SpriteNormal.shader" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Environment" t="Include">
+            <e p="CameraMovement.cs" t="Include" />
+            <e p="Parameters" t="Include">
+              <e p="CameraParameters.cs" t="Include" />
+              <e p="WorldParameters.cs" t="Include" />
+            </e>
+            <e p="WorldGenerator.cs" t="Include" />
+          </e>
+          <e p="Global" t="Include">
+            <e p="GameScore.cs" t="Include" />
+          </e>
+          <e p="InputSystem" t="Include">
+            <e p="GamePad.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="HealthBar.cs" t="Include" />
+            <e p="Parameters" t="Include">
+              <e p="PlayerParameters.cs" t="Include" />
+            </e>
+            <e p="PlayerMovement.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="SkyWorld.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
