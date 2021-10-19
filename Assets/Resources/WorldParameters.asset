@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a59d0e0c291cd45b3fdd8c77b6ead5, type: 3}
   m_Name: WorldParameters
   m_EditorClassIdentifier: 
-  endGameOffset: 7
+  endGameOffset: 10
   worldSpeed: 2

@@ -14,7 +14,7 @@ namespace Assets.Scripts.Player {
         public Action<float> OnFuelValueChanged;
 
         public void Start() {
-            _fuelValue = _fuelParametres.fuelCapacity;
+            FillTank();
         }
 
         public void HeatUp(float yInput) {
@@ -30,6 +30,10 @@ namespace Assets.Scripts.Player {
 
         public float GetFuelValue() {
             return _fuelValue;
+        }
+
+        public void FillTank() {
+            SetFuelValue(_fuelParametres.fuelCapacity);
         }
     }
 }

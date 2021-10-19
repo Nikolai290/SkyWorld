@@ -5,5 +5,6 @@ namespace SkyWorld.Player.Parameters {
     public class PlayerParameters : ScriptableObject {
         public int health;
         public float speed;
+        public float fallRate;
     }
 }

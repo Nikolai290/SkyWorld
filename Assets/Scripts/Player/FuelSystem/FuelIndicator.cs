@@ -5,7 +5,7 @@ namespace Assets.Scripts.Player.FuelSystem {
     public class FuelIndicator : MonoBehaviour{
 
         private Image _image;
-        public void Start() {
+        public void Awake() {
             _image = GetComponent<Image>();
         }
 
