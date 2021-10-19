@@ -26,11 +26,11 @@ namespace SkyWorld.Player {
         }
 
         private void Update() {
-            var movementVector = _fuelSystem.GetFuelValue() < 0 ? new Vector3(_gamePad.getInput.x, _gamePad.getInput.y) : new Vector3();
+            var movementVector = _fuelSystem.GetFuelValue() > 0 ? new Vector3(_gamePad.getInput.x, _gamePad.getInput.y) : new Vector3();
 
             _fuelSystem.HeatUp(_gamePad.getInput.y);
 
-            Vector3 nextPosition = _thisTransform.position + _gamePad.getInput * (_parameters.speed * _gamePad.getSpeedMultiple * Time.deltaTime);
+            Vector3 nextPosition = _thisTransform.position + movementVector * (_parameters.speed * _gamePad.getSpeedMultiple * Time.deltaTime);
             nextPosition.Set(nextPosition.x, Mathf.Clamp(nextPosition.y - _parameters.fallRate, _Y_MIN_LIMIT, _Y_MAX_LIMIT), nextPosition.z);
             _thisTransform.position = nextPosition;
         }
