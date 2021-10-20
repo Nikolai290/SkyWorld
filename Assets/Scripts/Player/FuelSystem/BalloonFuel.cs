@@ -17,15 +17,17 @@ namespace Assets.Scripts.Player {
             FillTank();
         }
 
-        public void HeatUp(float yInput) {
-            if (yInput > 0) {
-                SetFuelValue(_fuelValue - yInput * _fuelParametres.fuelExpenseRate * Time.deltaTime);
-            }
+        public bool HeatUp(Vector2 input) {
+            SetFuelValue(_fuelValue
+                - (input.y > 0 ? input.y : 0) * _fuelParametres.fuelExpenseRate * Time.deltaTime
+                - Mathf.Abs(input.x) / 2 * _fuelParametres.fuelExpenseRate * Time.deltaTime
+            );
+            return _fuelValue > 0;
         }
 
         public void SetFuelValue(float value) {
             _fuelValue = value;
-            _fuelIndicator.OnChangeFuelValue(value/_fuelParametres.fuelCapacity);
+            _fuelIndicator.OnChangeFuelValue(value / _fuelParametres.fuelCapacity);
         }
 
         public float GetFuelValue() {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player.CoinSystem;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace SkyWorld.Global {
@@ -6,6 +7,9 @@ namespace SkyWorld.Global {
         [SerializeField] private Canvas _endGameCanvas;
         [SerializeField] private Text _inGameScoreText;
         [SerializeField] private Text _endScoreText;
+        [SerializeField] private Text _endCoinsText;
+        [SerializeField] private GameObject _player;
+        private CoinAcceptor coinAcceptor;
 
         private int _score;
         

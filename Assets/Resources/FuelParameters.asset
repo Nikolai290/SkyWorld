@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FuelParameters
   m_EditorClassIdentifier: 
   fuelCapacity: 100
-  fuelExpenseRate: 20
+  fuelExpenseRate: 10

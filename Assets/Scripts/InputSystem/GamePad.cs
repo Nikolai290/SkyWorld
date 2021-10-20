@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 namespace SkyWorld.InputSystem {
     public class GamePad : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
         public float getSpeedMultiple => _currentDistance / _maxDistance;
-        public Vector3 getInput => (_gamepadInput - _startPosition).normalized;
+        public Vector2 keyboardInput = new Vector2();
+        public Vector3 getInput => touchScreen ? (_gamepadInput - _startPosition).normalized : keyboardInput;
         
         [Header("Links")]
         [SerializeField] private RectTransform _gamePad;
@@ -16,7 +17,9 @@ namespace SkyWorld.InputSystem {
         private Vector2 _gamepadInput;
         private float _currentDistance;
         private float _maxDistance;
-        
+
+        private bool touchScreen;
+
         private void Awake() {
             _disablePosition = _gamePad.position;
             _disablePositionCenter = _center.position;
@@ -24,6 +27,7 @@ namespace SkyWorld.InputSystem {
         }
 
         public void OnPointerDown(PointerEventData eventData) {
+            touchScreen = true;
             _startPosition = eventData.position;
             _gamePad.position = _startPosition;
         }
@@ -35,9 +39,15 @@ namespace SkyWorld.InputSystem {
         }
         
         public void OnPointerUp(PointerEventData eventData) {
+            touchScreen = false;
             _gamepadInput = _startPosition;
             _gamePad.position = _disablePosition;
             _center.position = _disablePositionCenter;
+        }
+
+        private void Update() {
+            keyboardInput.x = Input.GetAxis("Horizontal");
+            keyboardInput.y = Input.GetAxis("Vertical");
         }
     }
 }
