@@ -12,11 +12,14 @@ namespace SkyWorld.Player {
         [SerializeField] private BalloonFuel _fuelSystem;
         [SerializeField] private WorldParameters _worldParameters;
 
+
         private Transform _thisTransform;
         private Animation _thisAnimation;
 
         private const float _Y_MAX_LIMIT = 3.5f;
         private const float _Y_MIN_LIMIT = -4.5f;
+
+        private bool _isEndGame;
 
         private void Awake() {
             _thisTransform = transform;
@@ -28,17 +31,21 @@ namespace SkyWorld.Player {
         }
 
         private void Update() {
+            if (_isEndGame) return;
 
             var movementVector = _fuelSystem.HeatUp(_gamePad.getInput)
                 ? new Vector3(_gamePad.getInput.x, _gamePad.getInput.y)
                 : new Vector3(0, 0);
-
 
             Vector3 nextPosition = _thisTransform.position + movementVector * (_parameters.speed * _gamePad.getSpeedMultiple * Time.deltaTime);
             nextPosition.Set(nextPosition.x + _worldParameters.worldSpeed * Time.deltaTime / 2,
                 Mathf.Clamp(nextPosition.y - _parameters.fallRate, _Y_MIN_LIMIT, _Y_MAX_LIMIT), 
                 nextPosition.z);
             _thisTransform.position = nextPosition;
+        }
+
+        public void StopGameHandler() {
+            _isEndGame = true;
         }
     }
 }

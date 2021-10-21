@@ -1,4 +1,5 @@
-﻿using SkyWorld.Environment.Parameters;
+﻿using Assets.Scripts.Global;
+using SkyWorld.Environment.Parameters;
 using SkyWorld.Global;
 using SkyWorld.Player.Parameters;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace SkyWorld.Environment {
         [SerializeField] private PlayerParameters _playerParameters;
         [SerializeField] private CameraParameters _cameraParameters;
         [SerializeField] private WorldParameters _worldParameters;
+        [SerializeField] private EndGameScript _endGameScript;
 
         private Transform _thisTransform;
         private Vector3 _startCameraPos;
@@ -49,7 +51,7 @@ namespace SkyWorld.Environment {
 
         private void EndGame() {
             _isGame = false;
-            _gameScore.EndGame();
+            _endGameScript.EndGame();
         }
 
         private void SetScore() {

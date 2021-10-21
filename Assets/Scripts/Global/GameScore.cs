@@ -1,28 +1,34 @@
-﻿using Assets.Scripts.Player.CoinSystem;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace SkyWorld.Global {
     public class GameScore : MonoBehaviour {
-        [SerializeField] private Canvas _endGameCanvas;
         [SerializeField] private Text _inGameScoreText;
-        [SerializeField] private Text _endScoreText;
-        [SerializeField] private Text _endCoinsText;
-        [SerializeField] private GameObject _player;
-        private CoinAcceptor coinAcceptor;
 
+        private int _recordScore;
         private int _score;
-        
-        private const string _scoreParam = "SCORE: ";
+        private string RECORD_SCORE = "RecordScore";
+
+        public int GetScrore => _score;
+
+        public bool CheckRecord => _score > _recordScore;
+
+
+        public void Start() {
+            _recordScore = PlayerPrefs.HasKey(RECORD_SCORE) 
+                ? PlayerPrefs.GetInt(RECORD_SCORE) 
+                : 0;
+        }
 
         public void SetScore(int score) {
             _score = score;
             _inGameScoreText.text = score.ToString();
         }
-        
-        public void EndGame() {
-            _endGameCanvas.enabled = true;
-            _endScoreText.text = $"{_scoreParam}{_score}";
+
+        internal void FixRecord() {
+            if(CheckRecord) {
+                PlayerPrefs.SetInt(RECORD_SCORE, _score);
+            }
         }
     }
 }

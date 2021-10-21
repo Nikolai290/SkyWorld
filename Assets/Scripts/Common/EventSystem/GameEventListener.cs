@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Global {
+namespace Assets.Scripts.Common.EventSystem {
     public class GameEventListener : MonoBehaviour {
         public GameEvent Event;
 

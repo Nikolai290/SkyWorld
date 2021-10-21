@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Global {
+namespace Assets.Scripts.Common.EventSystem {
     [CreateAssetMenu(fileName = "GameEvent", menuName = "Additional/GameEvent", order = 0)]
     public class GameEvent : ScriptableObject {
         private List<GameEventListener> listeners = new List<GameEventListener>();
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Global {
                 listeners[i].OnEventRaise(obj);
             }
         }
-    
+
         public void AddListener(GameEventListener listener) {
             listeners.Add(listener);
         }
