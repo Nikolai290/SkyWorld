@@ -5034,6 +5034,7 @@ GameObject:
   - component: {fileID: 6501040419220014631}
   - component: {fileID: 4242695209821378254}
   - component: {fileID: 4242695209821378256}
+  - component: {fileID: 5285566634921946619}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5071,7 +5072,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: 08c789dbe3ae5db4cb4803d8d013b562, type: 2}
-  _healthBar: {fileID: 0}
   _gamePad: {fileID: 0}
   _fuelSystem: {fileID: 2079990343}
   _worldParameters: {fileID: 11400000, guid: 087dbbd1216b7a0428695a6762d09628, type: 2}
@@ -5135,6 +5135,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5285566634921946619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4242695210210813448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3ccab37bef6c646a78941bb33efdf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 0}
 --- !u!1 &7652315472587929125
 GameObject:
   m_ObjectHideFlags: 0
