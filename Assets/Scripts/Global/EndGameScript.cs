@@ -1,4 +1,5 @@
-﻿using SkyWorld.Global;
+﻿using Assets.Scripts.Player.HealthSystem;
+using SkyWorld.Global;
 using SkyWorld.Player;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,8 @@ namespace Assets.Scripts.Global {
         [SerializeField] private GameScore _gameScore;
         [SerializeField] private GameCoins _gameCoins;
         [SerializeField] private GameObject _player;
-
+        
+        private PlayerHealth _playerHealth;
         private PlayerMovement _playerMovement;
 
         private bool _isEndGame = false;
@@ -21,6 +23,9 @@ namespace Assets.Scripts.Global {
         private void Start() {
             _endGameCanvas = GetComponent<Canvas>();
             _playerMovement = _player.GetComponent<PlayerMovement>();
+            _playerHealth = _player.GetComponent<PlayerHealth>();
+
+            _playerHealth.OnPlayerDie += EndGame;
         }
 
         private const string _scoreParam = "SCORE: ";
