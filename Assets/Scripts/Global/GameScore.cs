@@ -4,20 +4,28 @@ using UnityEngine.UI;
 namespace SkyWorld.Global {
     public class GameScore : MonoBehaviour {
         [SerializeField] private Text _inGameScoreText;
+        [SerializeField] private Transform _playerTransform;
 
         private int _recordScore;
         private int _score;
         private string RECORD_SCORE = "RecordScore";
+        private Vector3 _startCameraPos;
 
         public int GetScrore => _score;
 
         public bool CheckRecord => _score > _recordScore;
 
+        private void Awake() {
+            _startCameraPos = _playerTransform.position;
+        }
 
         public void Start() {
             _recordScore = PlayerPrefs.HasKey(RECORD_SCORE) 
                 ? PlayerPrefs.GetInt(RECORD_SCORE) 
                 : 0;
+        }
+        private void Update() {
+            SetScore((int)Vector3.Distance(_startCameraPos, _playerTransform.position));
         }
 
         public void SetScore(int score) {

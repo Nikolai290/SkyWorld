@@ -14,14 +14,12 @@ namespace SkyWorld.Environment {
         [SerializeField] private WorldParameters _worldParameters;
         [SerializeField] private EndGameScript _endGameScript;
 
-        private Transform _thisTransform;
         private Vector3 _startCameraPos;
         private float _speed;
         private bool _isGame;
 
         private void Awake() {
-            _thisTransform = transform;
-            _startCameraPos = _thisTransform.position;
+            _startCameraPos = transform.position;
         }
 
         private void Start() {
@@ -33,19 +31,19 @@ namespace SkyWorld.Environment {
             if (!_isGame) return;
             SetScore();
             
-            Vector3 currentPosition = _thisTransform.position;
-            _thisTransform.position = new Vector3(currentPosition.x + (_worldParameters.worldSpeed * Time.deltaTime), currentPosition.y, currentPosition.z);
+            Vector3 currentPosition = transform.position;
+            transform.position = new Vector3(currentPosition.x + (_worldParameters.worldSpeed * Time.deltaTime), currentPosition.y, currentPosition.z);
             
             Vector3 nextCameraPos = _playerTransform.position;
             nextCameraPos.Set(nextCameraPos.x, _startCameraPos.y, _startCameraPos.z);
 
-            if (_thisTransform.position.x - nextCameraPos.x > _worldParameters.endGameOffset) EndGame();
+            if (transform.position.x - nextCameraPos.x > _worldParameters.endGameOffset) EndGame();
             var offset = 10f;
-            if (nextCameraPos.x - _thisTransform.position.x < offset) {
+            if (nextCameraPos.x - transform.position.x < offset) {
                 _speed = _playerParameters.speed;
                 return;
             }
-            _thisTransform.position = Vector3.MoveTowards(_thisTransform.position,nextCameraPos, _speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position,nextCameraPos, _speed * Time.deltaTime);
             _speed += _cameraParameters.speedMultiple;
         }
 
@@ -55,7 +53,7 @@ namespace SkyWorld.Environment {
         }
 
         private void SetScore() {
-            _gameScore.SetScore((int)Vector3.Distance(_startCameraPos, _thisTransform.position));
+            _gameScore.SetScore((int)Vector3.Distance(_startCameraPos, transform.position));
         }
     }
 }

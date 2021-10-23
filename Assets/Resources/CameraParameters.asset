@@ -15,3 +15,5 @@ MonoBehaviour:
   speedMultiple: 0.5
   yBorderOffset: 6
   xBorderOffset: 14
+  minSize: 6
+  maxSize: 9

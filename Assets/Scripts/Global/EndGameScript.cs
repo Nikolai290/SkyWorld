@@ -33,6 +33,7 @@ namespace Assets.Scripts.Global {
         private const string _coinsParam = "COINS: ";
 
         public void EndGame() {
+            Time.timeScale = 0;
             _playerMovement.StopGameHandler();
             _isEndGame = true;
             _endGameCanvas.enabled = true;

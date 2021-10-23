@@ -6,5 +6,7 @@ namespace SkyWorld.Environment.Parameters {
         public float speedMultiple;
         public float yBorderOffset;
         public float xBorderOffset;
+        public float minSize;
+        public float maxSize;
     }
 }

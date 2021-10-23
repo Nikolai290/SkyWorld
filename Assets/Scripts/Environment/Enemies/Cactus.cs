@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Common.Directions;
+﻿using Assets.Scripts.Common.Consts;
+using Assets.Scripts.Common.Directions;
 using System.Collections;
 using UnityEngine;
 
@@ -7,16 +8,23 @@ namespace Assets.Scripts.Environment.Enemies {
         [SerializeField] private Transform _shootSpawnPoint;
         [SerializeField] private CactusParametres _cactusParametres;
 
-        public bool isShootingLoop;
+        private bool _isShootingLoop;
 
-        private void Start() {
-            isShootingLoop = true;
-            StartCoroutine(CactusShootingLoop());
+        private void OnTriggerEnter2D(Collider2D collision) {
+            if(collision.gameObject.tag == Tags.PLAYER) {
+                _isShootingLoop = true;
+                StartCoroutine(CactusShootingLoop());
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision) {
+            if(collision.gameObject.tag == Tags.PLAYER) {
+                _isShootingLoop = false;
+            }
         }
 
         private IEnumerator CactusShootingLoop() {
-            while (isShootingLoop) {
-
+            while (_isShootingLoop) {
                 for (int i = 0; i < _cactusParametres.shootCount; i++) {
                     if (_cactusParametres.UpShoot) {
                         Shoot(Direction.Up());
@@ -29,7 +37,6 @@ namespace Assets.Scripts.Environment.Enemies {
                     }
                     yield return new WaitForSeconds(_cactusParametres.shootIntervalInRound);
                 }
-
                 yield return new WaitForSeconds(_cactusParametres.shootInterval);
             }
         }
