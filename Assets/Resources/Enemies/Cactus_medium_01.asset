@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cd0a116489205d4f8cc8315a235c2c2, type: 3}
-  m_Name: CactusParametres
+  m_Name: Cactus_medium_01
   m_EditorClassIdentifier: 
-  shootInterval: 3
+  shootInterval: 2.5
   shootIntervalInRound: 0.3
   shootCount: 3
   UpShoot: 1
@@ -20,7 +20,7 @@ MonoBehaviour:
   RightShoot: 1
   spikeDamage: 1
   spikeSpeed: 5
-  spikeLifetime: 2
+  spikeLifetime: 1.5
   Spikes:
   - {fileID: 2843637773956093386, guid: 37cb16c30422a564ba70ce66df5012d1, type: 3}
   - {fileID: 2313362704987988136, guid: bf0d75ce8fec23048aecc577fe27b3b0, type: 3}

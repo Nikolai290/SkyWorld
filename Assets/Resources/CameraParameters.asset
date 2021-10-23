@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c496d14af9feccb44bd9cb65d5547ae9, type: 3}
   m_Name: CameraParameters
   m_EditorClassIdentifier: 
-  speedMultiple: 0.1
-  offset: 4
+  speedMultiple: 0.5
+  yBorderOffset: 6
+  xBorderOffset: 14

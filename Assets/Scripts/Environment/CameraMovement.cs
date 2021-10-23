@@ -40,8 +40,8 @@ namespace SkyWorld.Environment {
             nextCameraPos.Set(nextCameraPos.x, _startCameraPos.y, _startCameraPos.z);
 
             if (_thisTransform.position.x - nextCameraPos.x > _worldParameters.endGameOffset) EndGame();
-            
-            if (nextCameraPos.x - _thisTransform.position.x < _cameraParameters.offset) {
+            var offset = 10f;
+            if (nextCameraPos.x - _thisTransform.position.x < offset) {
                 _speed = _playerParameters.speed;
                 return;
             }

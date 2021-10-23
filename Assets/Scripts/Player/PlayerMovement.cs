@@ -14,7 +14,7 @@ namespace SkyWorld.Player {
         private PlayerHealth playerHealth;
 
 
-        private const float _Y_MAX_LIMIT = 3.5f;
+        private const float _Y_MAX_LIMIT = 15f;
         private const float _Y_MIN_LIMIT = -4.5f;
 
         private bool _isEndGame;
@@ -35,7 +35,7 @@ namespace SkyWorld.Player {
                 : new Vector3(0, 0);
 
             Vector3 nextPosition = transform.position + movementVector * (_parameters.speed * _gamePad.getSpeedMultiple * Time.deltaTime);
-            nextPosition.Set(nextPosition.x + _worldParameters.worldSpeed * Time.deltaTime / 2,
+            nextPosition.Set(nextPosition.x + _worldParameters.worldSpeed * Time.deltaTime,
                 Mathf.Clamp(nextPosition.y - _parameters.fallRate, _Y_MIN_LIMIT, _Y_MAX_LIMIT), 
                 nextPosition.z);
             transform.position = nextPosition;

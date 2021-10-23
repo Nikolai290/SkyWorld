@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd0a116489205d4f8cc8315a235c2c2, type: 3}
+  m_Name: Cactus_hard_01
+  m_EditorClassIdentifier: 
+  shootInterval: 4
+  shootIntervalInRound: 0.1
+  shootCount: 3
+  UpShoot: 1
+  LeftShoot: 1
+  RightShoot: 1
+  spikeDamage: 2
+  spikeSpeed: 8
+  spikeLifetime: 1.5
+  Spikes:
+  - {fileID: 2843637773956093386, guid: 37cb16c30422a564ba70ce66df5012d1, type: 3}
+  - {fileID: 2313362704987988136, guid: bf0d75ce8fec23048aecc577fe27b3b0, type: 3}
+  - {fileID: 8297157922061583097, guid: 5e58f4f881bc3d1479d7a75ee30aa016, type: 3}
+  - {fileID: 138553888267170194, guid: ac1ff80fbc176dc4797baeb8f923cc89, type: 3}
