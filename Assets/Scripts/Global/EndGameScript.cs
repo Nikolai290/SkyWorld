@@ -1,20 +1,22 @@
-﻿using Assets.Scripts.Player.HealthSystem;
+﻿using Assets.Scripts.Player;
+using Assets.Scripts.Player.HealthSystem;
 using SkyWorld.Global;
 using SkyWorld.Player;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Assets.Scripts.Global {
     public class EndGameScript : MonoBehaviour {
         private Canvas _endGameCanvas;
         [SerializeField] private Text _endScoreText;
         [SerializeField] private Text _endCoinsText;
-        [SerializeField] private GameScore _gameScore;
-        [SerializeField] private GameCoins _gameCoins;
-        [SerializeField] private GameObject _player;
-        
+
+        [Inject] private GameScore _gameScore;
+        [Inject] private GameCoins _gameCoins;
+        [Inject] private IPlayerMovement _playerMovement;
+
         private PlayerHealth _playerHealth;
-        private PlayerMovement _playerMovement;
 
         private bool _isEndGame = false;
 
@@ -22,9 +24,7 @@ namespace Assets.Scripts.Global {
 
         private void Start() {
             _endGameCanvas = GetComponent<Canvas>();
-            _playerMovement = _player.GetComponent<PlayerMovement>();
-            _playerHealth = _player.GetComponent<PlayerHealth>();
-
+            _playerHealth = _playerMovement.gameObject.GetComponent<PlayerHealth>();
             _playerHealth.OnPlayerDie += EndGame;
         }
 
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Global {
             _endGameCanvas.enabled = true;
 
             _endScoreText.text = _gameScore.CheckRecord
-                ? $"{_scoreRecordParam}{_gameScore.GetScrore}" 
+                ? $"{_scoreRecordParam}{_gameScore.GetScrore}"
                 : $"{_scoreParam}{_gameScore.GetScrore}";
             _endCoinsText.text = $"{_coinsParam}{_gameCoins.Coins}";
 

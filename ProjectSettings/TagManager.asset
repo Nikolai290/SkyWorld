@@ -8,6 +8,9 @@ TagManager:
   - Floor
   - BackBorder
   - Hit-1
+  - ship
+  - asteroid
+  - WorldBorders
   layers:
   - Default
   - TransparentFX

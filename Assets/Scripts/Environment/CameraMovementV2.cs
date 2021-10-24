@@ -1,17 +1,19 @@
 ﻿using Assets.Scripts.Environment.Parameters;
+using Assets.Scripts.Player;
 using SkyWorld.Environment.Parameters;
 using SkyWorld.Player;
 using SkyWorld.Player.Parameters;
 using UnityEngine;
+using Zenject;
 
 namespace SkyWorld.Environment {
     public class CameraMovementV2 : MonoBehaviour {
         [Header("Links")]
-        [SerializeField] private GameObject _player;
-        [SerializeField] private PlayerParameters _playerParameters;
-        [SerializeField] private CameraParameters _cameraParameters;
-        [SerializeField] private WorldBorders _worldBorders;
+        [Inject] private PlayerParameters _playerParameters;
+        [Inject] private CameraParameters _cameraParameters;
 
+        [Inject] private WorldBorders _worldBorders;
+        [Inject] private IPlayerMovement playerMovement;
         private Camera _thisCamera;
         private PlayerMovement _playerMovement;
         private float _maxPositionDifPerFrame;
@@ -28,8 +30,12 @@ namespace SkyWorld.Environment {
         private float _speed;
         private bool _isGame;
 
+        public CameraMovementV2(IPlayerMovement playerMovement) {
+            this.playerMovement = playerMovement;
+        }
+
+
         private void Start() {
-            _playerMovement = _player.GetComponent<PlayerMovement>();
             _thisCamera = GetComponent<Camera>();
             _speed = _playerParameters.speed;
             _isGame = true;
@@ -37,17 +43,17 @@ namespace SkyWorld.Environment {
 
         private void LateUpdate() {
             if (!_isGame) return;
-            var x = _player.transform.position.x > RightCameraPostionBorder
+            var x = playerMovement.transform.position.x > RightCameraPostionBorder
                 ? RightCameraPostionBorder
-                : _player.transform.position.x < LeftCameraPostionBorder
+                : playerMovement.transform.position.x < LeftCameraPostionBorder
                 ? LeftCameraPostionBorder
-                : _player.transform.position.x + _cameraParameters.xBorderOffset * 0.7f;
+                : playerMovement.transform.position.x + _cameraParameters.xBorderOffset * 0.7f;
 
-            var y = _player.transform.position.y > TopCameraPostionBorder
+            var y = playerMovement.transform.position.y > TopCameraPostionBorder
                 ? TopCameraPostionBorder
-                : _player.transform.position.y < BottomCameraPostionBorder
+                : playerMovement.transform.position.y < BottomCameraPostionBorder
                 ? BottomCameraPostionBorder
-                : _player.transform.position.y;
+                : playerMovement.transform.position.y;
 
             var nextPosition = new Vector3(x, y);
             nextPosition.z = transform.position.z;

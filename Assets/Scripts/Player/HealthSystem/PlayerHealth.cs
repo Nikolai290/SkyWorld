@@ -1,10 +1,11 @@
 ﻿using SkyWorld.Player;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Player.HealthSystem {
     public class PlayerHealth : MonoBehaviour {
-        [SerializeField] private HealthBar _healthBar;
+        [Inject] private HealthBar _healthBar;
 
         public Action OnPlayerDie;
         public int MaxHealth { get; private set; }

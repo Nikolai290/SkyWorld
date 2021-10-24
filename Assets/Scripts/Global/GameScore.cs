@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace SkyWorld.Global {
     public class GameScore : MonoBehaviour {
         [SerializeField] private Text _inGameScoreText;
-        [SerializeField] private Transform _playerTransform;
+        [Inject] private IPlayerMovement _playerMovement;
 
         private int _recordScore;
         private int _score;
@@ -16,7 +18,7 @@ namespace SkyWorld.Global {
         public bool CheckRecord => _score > _recordScore;
 
         private void Awake() {
-            _startCameraPos = _playerTransform.position;
+            _startCameraPos = _playerMovement.transform.position;
         }
 
         public void Start() {
@@ -25,7 +27,7 @@ namespace SkyWorld.Global {
                 : 0;
         }
         private void Update() {
-            SetScore((int)Vector3.Distance(_startCameraPos, _playerTransform.position));
+            SetScore((int)Vector3.Distance(_startCameraPos, _playerMovement.transform.position));
         }
 
         public void SetScore(int score) {
