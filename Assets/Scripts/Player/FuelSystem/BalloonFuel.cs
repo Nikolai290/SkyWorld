@@ -2,12 +2,13 @@
 using Assets.Scripts.Player.Parameters;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Player {
     public class BalloonFuel : MonoBehaviour {
 
         [SerializeField] private FuelParametres _fuelParametres;
-        [SerializeField] private FuelIndicator _fuelIndicator;
+        [Inject] private FuelIndicator _fuelIndicator;
 
         private float _fuelValue;
 

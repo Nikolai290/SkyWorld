@@ -5,24 +5,30 @@ using SkyWorld.Environment.Parameters;
 using SkyWorld.InputSystem;
 using SkyWorld.Player.Parameters;
 using UnityEngine;
+using Zenject;
 
 namespace SkyWorld.Player {
-    public class PlayerMovement : MonoBehaviour {
-        [SerializeField] private PlayerParameters _parameters;
-        [SerializeField] private GamePad _gamePad;
-        [SerializeField] private BalloonFuel _fuelSystem;
-        [SerializeField] private WorldParameters _worldParameters;
-        [SerializeField] private WorldBorders _worldBorders;
+    public class PlayerMovement : MonoBehaviour, IPlayerMovement {
+        [Inject] private PlayerParameters _parameters;
+        [Inject] private WorldParameters _worldParameters;
+
+        [Inject] private WorldBorders _worldBorders;
+        [Inject] private GamePad _gamePad;
+
         private PlayerHealth playerHealth;
-
+        private BalloonFuel _fuelSystem;
         private float _playerHeight = 4f;
-
         private bool _isEndGame;
+
         public float TotalSpeed => _parameters.speed * _gamePad.getSpeedMultiple;
 
         private void Awake() {
             playerHealth = GetComponent<PlayerHealth>();
             playerHealth.Init(_parameters.health);
+        }
+
+        private void Start() {
+            _fuelSystem = GetComponentInChildren<BalloonFuel>();
         }
 
         private void Update() {
@@ -41,6 +47,10 @@ namespace SkyWorld.Player {
 
         public void StopGameHandler() {
             _isEndGame = true;
+        }
+
+        public void Test(string message) {
+            Debug.Log(message);
         }
     }
 }
