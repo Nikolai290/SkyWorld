@@ -29,7 +29,7 @@ namespace SkyWorld.Environment {
 
         private float _speed;
         private bool _isGame;
-
+        private Vector3 nextPosition;
         public CameraMovementV2(IPlayerMovement playerMovement) {
             this.playerMovement = playerMovement;
         }
@@ -55,7 +55,7 @@ namespace SkyWorld.Environment {
                 ? BottomCameraPostionBorder
                 : playerMovement.transform.position.y;
 
-            var nextPosition = new Vector3(x, y);
+            nextPosition = new Vector3(x, y);
             nextPosition.z = transform.position.z;
             var speed = _speed * Time.deltaTime;
             var difX = nextPosition.x - transform.position.x;

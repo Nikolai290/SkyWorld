@@ -43,6 +43,8 @@ namespace Assets.Scripts.Environment.Enemies {
                 } catch {
                     Debug.LogError("Player hasn't 'PlayerHealth' script!");
                 }
+
+                // TODO: add animation and sound effect
             }
         }
     }
