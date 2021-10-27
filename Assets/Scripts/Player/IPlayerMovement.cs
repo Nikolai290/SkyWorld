@@ -4,6 +4,5 @@ namespace Assets.Scripts.Player {
     public interface IPlayerMovement  : IGameObject {
         float TotalSpeed { get; }
         void StopGameHandler();
-        void Test(string message);
     }
 }

@@ -13,10 +13,11 @@ namespace SkyWorld.Environment {
         [Inject] private CameraParameters _cameraParameters;
 
         [Inject] private WorldBorders _worldBorders;
-        [Inject] private IPlayerMovement playerMovement;
+        [Inject] private IPlayerMovement _playerMovement;
         private Camera _thisCamera;
-        private PlayerMovement _playerMovement;
         private float _maxPositionDifPerFrame;
+
+        private float _bottomOffset = 6;
 
         private float LeftCameraPostionBorder 
             => _worldBorders.LeftBorder.position.x + _cameraParameters.xBorderOffset;
@@ -25,13 +26,13 @@ namespace SkyWorld.Environment {
         private float TopCameraPostionBorder 
             => _worldBorders.TopBorder.position.y - _cameraParameters.yBorderOffset;
         private float BottomCameraPostionBorder 
-            => _worldBorders.BottomBorder.position.y + _cameraParameters.yBorderOffset;
+            => _worldBorders.BottomBorder.position.y + _bottomOffset;
 
         private float _speed;
         private bool _isGame;
         private Vector3 nextPosition;
         public CameraMovementV2(IPlayerMovement playerMovement) {
-            this.playerMovement = playerMovement;
+            this._playerMovement = playerMovement;
         }
 
 
@@ -43,30 +44,35 @@ namespace SkyWorld.Environment {
 
         private void LateUpdate() {
             if (!_isGame) return;
-            var x = playerMovement.transform.position.x > RightCameraPostionBorder
-                ? RightCameraPostionBorder
-                : playerMovement.transform.position.x < LeftCameraPostionBorder
-                ? LeftCameraPostionBorder
-                : playerMovement.transform.position.x + _cameraParameters.xBorderOffset * 0.7f;
+            //
+            var difX = nextPosition.x - transform.position.x;
+            var difY = Mathf.Abs((nextPosition.y - transform.position.y) * 2.5f);
+            var difFrame = difX > difY ? difX : difY;
 
-            var y = playerMovement.transform.position.y > TopCameraPostionBorder
+            if (difFrame > _maxPositionDifPerFrame) {
+                _maxPositionDifPerFrame = difFrame;
+            }
+
+            var orthographicSize = _cameraParameters.minSize + (difFrame / _maxPositionDifPerFrame * (_cameraParameters.maxSize - _cameraParameters.minSize));
+            _bottomOffset = orthographicSize;
+            _thisCamera.orthographicSize = orthographicSize;
+            //
+            var x = _playerMovement.transform.position.x > RightCameraPostionBorder
+                ? RightCameraPostionBorder
+                : _playerMovement.transform.position.x < LeftCameraPostionBorder
+                ? LeftCameraPostionBorder
+                : _playerMovement.transform.position.x + _cameraParameters.xBorderOffset * 0.7f;
+
+            var y = _playerMovement.transform.position.y > TopCameraPostionBorder
                 ? TopCameraPostionBorder
-                : playerMovement.transform.position.y < BottomCameraPostionBorder
+                : _playerMovement.transform.position.y < BottomCameraPostionBorder
                 ? BottomCameraPostionBorder
-                : playerMovement.transform.position.y;
+                : _playerMovement.transform.position.y;
 
             nextPosition = new Vector3(x, y);
             nextPosition.z = transform.position.z;
             var speed = _speed * Time.deltaTime;
-            var difX = nextPosition.x - transform.position.x;
-            var difY = Mathf.Abs((nextPosition.y - transform.position.y) * 2.5f);
-
-            var difFrame = difX > difY ? difX : difY;
-            if (difFrame > _maxPositionDifPerFrame) {
-                _maxPositionDifPerFrame = difFrame;
-            }
-            _thisCamera.orthographicSize = _cameraParameters.minSize + (difFrame / _maxPositionDifPerFrame * (_cameraParameters.maxSize - _cameraParameters.minSize));
-
+            //
             transform.position = Vector3.Lerp(transform.position, nextPosition, speed * _cameraParameters.speedMultiple);
         }
     }

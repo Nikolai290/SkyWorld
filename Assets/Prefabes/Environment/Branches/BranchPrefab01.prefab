@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1111212901564524634}
   - component: {fileID: 5143545723980527755}
   - component: {fileID: 6676181492610983873}
+  - component: {fileID: -682339453740300308}
   m_Layer: 0
   m_Name: BranchPrefab01
   m_TagString: Untagged
@@ -121,3 +122,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84, y: 1.475}
   m_EdgeRadius: 0
+--- !u!114 &-682339453740300308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944947487465949577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a12be117a087584f8f02a56548ab52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

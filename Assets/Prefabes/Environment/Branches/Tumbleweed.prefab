@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6983771139986492630}
   - component: {fileID: 5977429009934773705}
   - component: {fileID: 5243492196229437046}
+  - component: {fileID: 165679179772135481}
   m_Layer: 0
   m_Name: Tumbleweed
   m_TagString: Untagged
@@ -111,3 +112,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.51
+--- !u!114 &165679179772135481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688557708442769389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a12be117a087584f8f02a56548ab52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

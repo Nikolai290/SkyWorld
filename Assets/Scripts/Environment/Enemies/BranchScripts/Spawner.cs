@@ -27,11 +27,11 @@ namespace Assets.Scripts.Environment.Enemies.BranchScripts {
 
             var branch = Instantiate(branchPrefab, transform.position, Quaternion.identity);
 
-            var branchScript = branch.GetComponent<Branch>();
+            var flyObject = branch.GetComponent<FlyObject>();
             if (_branchParametres.randomRotation) {
-                branchScript.Init(_branchParametres.speed, _branchParametres.randomRotation, _target);
+                flyObject.Init(_branchParametres.speed, _branchParametres.randomRotation, _target);
             } else {
-                branchScript.Init(_branchParametres.speed, _branchParametres.rotationSpeed, _target);
+                flyObject.Init(_branchParametres.speed, _branchParametres.rotationSpeed, _target);
             }
         }
     }
