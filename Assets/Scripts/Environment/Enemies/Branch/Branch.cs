@@ -1,14 +1,18 @@
 ﻿using Assets.Scripts.Common.Consts;
+using Assets.Scripts.Environment.Enemies.Spawner;
 using Assets.Scripts.Player.HealthSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment.Enemies.BranchScripts {
-    public class Branch : MonoBehaviour {
+    public class Branch : MonoBehaviour, ISpawnedObjectBehaviour {
 
-        [SerializeField] private int _damage = 1;
+        [SerializeField] private int _damage;
 
-        public void Init(int damage) {
-            _damage = damage > 0? damage : -damage;
+        public void Init(ISpawnedObjectParametres parametres) {
+            if(parametres is BranchParametres) {
+                var param = (BranchParametres)parametres;
+                _damage = param.damage;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision) {

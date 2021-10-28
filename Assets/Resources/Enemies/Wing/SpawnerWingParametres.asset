@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562446878120b4d4c9279421a571b1ae, type: 3}
-  m_Name: WingSpawner
+  m_Script: {fileID: 11500000, guid: 2f8e73afe0c468644bb8cd634e3c9696, type: 3}
+  m_Name: SpawnerWingParametres
   m_EditorClassIdentifier: 
-  activationChance: 1
-  spawnedPrefabs:
-  - {fileID: 2797441444179858648, guid: 800e951002e635b4eb5d170d2113760f, type: 3}
+  speed: 3
+  rotationSpeed: 0
+  randomRotation: 0

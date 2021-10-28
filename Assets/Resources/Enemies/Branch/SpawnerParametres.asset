@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 562446878120b4d4c9279421a571b1ae, type: 3}
-  m_Name: WingSpawner
+  m_Name: SpawnerParametres
   m_EditorClassIdentifier: 
   activationChance: 1
   spawnedPrefabs:
-  - {fileID: 2797441444179858648, guid: 800e951002e635b4eb5d170d2113760f, type: 3}
+  - {fileID: 8375983460659282168, guid: 0e692642c123017479321cffac6ab9c9, type: 3}
+  - {fileID: 716404341916015683, guid: db1fa312dc0440b40b290290edc00567, type: 3}
+  - {fileID: 3137662847018890337, guid: 32557a2c0cb365a459949940c3a85a5e, type: 3}

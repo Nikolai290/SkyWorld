@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Assets.Scripts.Environment.Enemies.BranchScripts {
-    [CreateAssetMenu(fileName = "BranchParametres", menuName = "BranchParametres", order = 0)]
+    [CreateAssetMenu(fileName = "FlyObjectParametres", menuName = "SkyWorld/FlyObjectParametres", order = 0)]
     public class FlyObjectParametres : ScriptableObject {
         [Tooltip("Скорость полёта заспавненных объектов. Если объект летит в спину игроку, ставь скорость на 5-10 больше, чем если в морду")]
         public float speed;

@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.Player.HealthSystem;
+﻿using Assets.Scripts.Environment.Enemies.Spawner;
+using Assets.Scripts.Player.HealthSystem;
 using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment.Enemies {
-    public class Spike : MonoBehaviour {
+    public class Spike : MonoBehaviour, ISpawnedObjectBehaviour {
 
         private float _speed;
         private float _lifetime;
@@ -43,9 +44,12 @@ namespace Assets.Scripts.Environment.Enemies {
                 } catch {
                     Debug.LogError("Player hasn't 'PlayerHealth' script!");
                 }
-
                 // TODO: add animation and sound effect
             }
+        }
+
+        public void Init(ISpawnedObjectParametres parametres) {
+            throw new System.NotImplementedException();
         }
     }
 }

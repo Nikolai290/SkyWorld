@@ -16,8 +16,8 @@ namespace Assets.Scripts.Environment.Enemies.BranchScripts {
             _speed = parametres.speed;
             _targets = new Queue<Transform>(targets);
             _rotationSpeed = parametres.rotationSpeed;
-            _isInit = true;
             _target = _targets.Dequeue();
+            _isInit = true;
         }
 
         private void Start() {
@@ -30,14 +30,16 @@ namespace Assets.Scripts.Environment.Enemies.BranchScripts {
 
         private void Update() {
             if (!_isInit) return;
+            if (transform.position == _target.position) {
+                if (_targets.Count() > 0) {
+                    _target = _targets.Dequeue();
+                } else {
+                   Destroy(gameObject);
+                }
+            }
+
             transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
             Rotate();
-
-            if (_targets.Count() > 0) {
-                _target = _targets.Dequeue();
-            } else {
-                Destroy(gameObject);
-            }
         }
 
         private void Rotate() {

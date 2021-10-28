@@ -15,25 +15,33 @@ namespace Assets.Scripts.Environment.Enemies.BranchScripts {
         [SerializeField] private FlyObjectParametres _flyObjectParametres;
         [SerializeField] private SpawnedObjectAdditionalParametres _spawnedObjectAdditionalParametres;
 
+
+        private GameObject _spawnedObject;
         private void Awake() {
-            _trigger.Init(Tags.PLAYER, OnPlayerEnterTrigger, null, null);
+            _trigger.Init(Tags.PLAYER, OnPlayerEnterTrigger, null, OnPlayerExitTrigger);
             GetComponent<SpriteRenderer>().enabled = false;
         }
 
         public void OnPlayerEnterTrigger(GameObject player) {
-            _trigger.gameObject.SetActive(false);
-
             if (Random.Range(0f, 1f) > _spawnerParametres.activationChance) {
                 return;
             }
 
             var branchPrefab = _spawnerParametres.spawnedPrefabs[Random.Range(0, _spawnerParametres.spawnedPrefabs.Count)];
 
-            var branch = Instantiate(branchPrefab, transform.position, Quaternion.identity);
+            _spawnedObject = Instantiate(branchPrefab, transform.position, Quaternion.identity);
 
-            if (branch.TryGetComponent(out FlyObject flyObject)) {
+            if (_spawnedObject.TryGetComponent(out FlyObject flyObject)) {
                 flyObject.Init(_flyObjectParametres, _targets);
             }
+            if(_spawnedObject.TryGetComponent(out ISpawnedObjectBehaviour obj)) {
+                obj.Init(_spawnedObjectAdditionalParametres);
+            }
         }
+
+        public void OnPlayerExitTrigger(GameObject player) {
+            Destroy(_spawnedObject);
+        }
+        
     }
 }
